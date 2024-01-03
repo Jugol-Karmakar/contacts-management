@@ -16,30 +16,52 @@ export default function Layout({ children }) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
+
+      {/* App bar header  */}
+
       <AppBar
         position="fixed"
         sx={{
           pl: `${drawerWidth}px`,
           zIndex: (theme) => theme.zIndex.drawer + 1,
-          background: "linear-gradient(to right, #00c5fb 0%, #0253cc 100%)",
+          backgroundColor: "primary.light",
         }}
       >
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h6" noWrap component="div">
-            Contact Management
+            <Link href="/">Contact Management</Link>
           </Typography>
+
+          {/* header links  */}
+
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box sx={{ flexGrow: 0 }}>
-              <Button>
-                <Link href="/add-contacts">Add Contacts</Link>
+              <Button variant="outlined" sx={{ marginRight: "15px" }}>
+                <Link
+                  href="/add-contacts"
+                  style={{
+                    textDecoration: "none",
+                  }}
+                >
+                  Add Contacts
+                </Link>
               </Button>
               <Button>
-                <Link href="/all-contacts">All Contacts</Link>
+                <Link
+                  href="/all-contacts"
+                  style={{
+                    textDecoration: "none",
+                  }}
+                >
+                  All Contacts
+                </Link>
               </Button>
             </Box>
           </Box>
         </Toolbar>
       </AppBar>
+
+      {/* drawer sidebar menu */}
       <Drawer
         variant="permanent"
         sx={{
@@ -51,8 +73,8 @@ export default function Layout({ children }) {
             width: drawerWidth,
             boxSizing: "border-box",
             borderRight: 0,
-            backgroundColor: "#34444c",
-            color: "#fff",
+            backgroundColor: "#172030",
+            color: "#00000",
           },
         }}
       >
@@ -62,35 +84,35 @@ export default function Layout({ children }) {
             justifyContent: "center",
           }}
         ></Toolbar>
+
+        {/* sidebar links  */}
+
         <Box
           sx={{ overflow: "auto", display: "flex", flexDirection: "column" }}
         >
-          <Button fullWidth sx={{ paddingY: "10px" }}>
-            <Link
-              href="/add-contacts"
-              style={{ textDecoration: "none", color: "#ffffff" }}
-            >
+          <Button
+            fullWidth
+            sx={{ paddingY: "10px", backgroundColor: "primary.main" }}
+          >
+            <Link href="/add-contacts" style={{ textDecoration: "none" }}>
               Add Contact
             </Link>
           </Button>
           <Button>
-            <Link
-              href="/all-contacts"
-              style={{ textDecoration: "none", color: "#ffffff" }}
-            >
+            <Link href="/all-contacts" style={{ textDecoration: "none" }}>
               All Contact
             </Link>
           </Button>
           <Button>
-            <Link
-              href="/favourites"
-              style={{ textDecoration: "none", color: "#ffffff" }}
-            >
+            <Link href="/favourites" style={{ textDecoration: "none" }}>
               favourites
             </Link>
           </Button>
         </Box>
       </Drawer>
+
+      {/* children or main component  */}
+
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
         <Toolbar />
         {children}
