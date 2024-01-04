@@ -37,6 +37,7 @@ export default function AllContacts() {
         <Grid container spacing={4}>
           {allContacts.map((contact) => (
             <Grid item xs={4} key={contact._id}>
+              {/* single product card*/}
               <ContactCard
                 contact={contact}
                 allContacts={allContacts}

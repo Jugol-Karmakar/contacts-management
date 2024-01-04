@@ -9,6 +9,7 @@ import {
 import React, { useEffect } from "react";
 import ContactModal from "./contact-modal";
 import useContacts from "@/hooks/useContacts";
+import StarIcon from "@mui/icons-material/Star";
 
 export default function ContactCard({ contact }) {
   // console.log(contact);
@@ -25,6 +26,7 @@ export default function ContactCard({ contact }) {
   // using hooks
   const [allContacts, setAllContacts] = useContacts();
 
+  // delete a product
   const handleDeleteItem = (id) => {
     console.log("deleting contact", id);
     const proceed = window.confirm("are you sure want to delete?");
@@ -42,9 +44,54 @@ export default function ContactCard({ contact }) {
     }
   };
 
+  // add to favourite contact
+  const handleAddFavourite = (id) => {
+    console.log("add favourite id", id);
+
+    fetch(`http://localhost:5000/contacts/${id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          console.log("update");
+        }
+      });
+  };
+
   return (
     <>
-      <Card>
+      <Card sx={{ position: "relative" }}>
+        {contact.role !== "favourite" ? (
+          <Button
+            onClick={() => handleAddFavourite(contact._id)}
+            variant="contained"
+            sx={{
+              position: "absolute",
+              top: 5,
+              right: 5,
+              textTransform: "capitalize",
+              borderRadius: "0",
+              fontSize: "14px",
+            }}
+          >
+            Add to favourite
+          </Button>
+        ) : (
+          <StarIcon
+            sx={{
+              position: "absolute",
+              top: 5,
+              right: 5,
+              color: "yellow",
+              fontSize: "36px",
+            }}
+          />
+        )}
+
         <CardMedia>
           <img
             width={400}
@@ -71,6 +118,8 @@ export default function ContactCard({ contact }) {
             </Button>
           </Box>
         </CardContent>
+
+        {/* open modal component  */}
         <ContactModal
           open={open}
           setOpen={setOpen}
