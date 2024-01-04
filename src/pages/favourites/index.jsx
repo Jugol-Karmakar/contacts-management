@@ -8,7 +8,7 @@ export default function Favourites() {
 
   // get favourite contact
   useEffect(() => {
-    fetch("https://contact-management-server-mauve.vercel.app/contacts", {
+    fetch(" http://localhost:5000/contacts", {
       method: "GET",
     })
       .then((res) => res.json())

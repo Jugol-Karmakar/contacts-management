@@ -22,7 +22,7 @@ export default function AddContacts() {
 
   const onSubmit = (data) => {
     const addContact = data;
-    fetch("https://contact-management-server-mauve.vercel.app/add-contact", {
+    fetch(" http://localhost:5000/add-contact", {
       method: "POST",
       headers: {
         "content-type": "application/json",

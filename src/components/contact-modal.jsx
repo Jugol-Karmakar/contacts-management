@@ -26,16 +26,13 @@ export default function ContactModal({ open, handleClose, contact }) {
   const onSubmit = (data) => {
     const updateData = data;
     console.log("update date", contact._id);
-    fetch(
-      `https://contact-management-server-mauve.vercel.app/contacts/${contact._id}`,
-      {
-        method: "Put",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(updateData),
-      }
-    )
+    fetch(` http://localhost:5000/contacts/${contact._id}`, {
+      method: "Put",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateData),
+    })
       .then((res) => res.json())
       .then((data) => console.log(data));
   };
