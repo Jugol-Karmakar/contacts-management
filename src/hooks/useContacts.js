@@ -4,7 +4,7 @@ const useContacts = () => {
   const [allContacts, setAllContacts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/contacts", {
+    fetch("https://contact-management-server-mauve.vercel.app/contacts", {
       method: "GET",
     })
       .then((res) => res.json())

@@ -31,9 +31,12 @@ export default function ContactCard({ contact }) {
     console.log("deleting contact", id);
     const proceed = window.confirm("are you sure want to delete?");
     if (proceed) {
-      fetch(`http://localhost:5000/contacts/${id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://contact-management-server-mauve.vercel.app/contacts/${id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
@@ -48,7 +51,7 @@ export default function ContactCard({ contact }) {
   const handleAddFavourite = (id) => {
     console.log("add favourite id", id);
 
-    fetch(`http://localhost:5000/contacts/${id}`, {
+    fetch(`https://contact-management-server-mauve.vercel.app/contacts/${id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

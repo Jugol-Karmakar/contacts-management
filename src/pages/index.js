@@ -29,12 +29,16 @@ export default function Home() {
               paddingTop: "50px",
             }}
           >
-            <Typography>Contact Management System</Typography>
-            <Typography>
+            <Typography
+              sx={{ fontSize: "34px", fontWeight: 600, paddingY: "15px" }}
+            >
+              Contact Management System
+            </Typography>
+            <Typography sx={{}}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia
-              molestiae quam rerum quis nobis, maxime vero ab? Veritatis nemo
-              facilis voluptas possimus pariatur hic quis consequuntur error
-              soluta, sint vitae?
+              molestiae quam rerum quis nobis, <br /> maxime vero ab? Veritatis
+              nemo facilis voluptas possimus pariatur hic quis consequuntur
+              error soluta, sint vitae?
             </Typography>
           </Box>
         </Container>
