@@ -20,6 +20,7 @@ export default function ContactModal({ open, handleClose, contact }) {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -35,6 +36,8 @@ export default function ContactModal({ open, handleClose, contact }) {
     })
       .then((res) => res.json())
       .then((data) => console.log(data));
+
+    reset();
   };
 
   return (
@@ -159,7 +162,12 @@ export default function ContactModal({ open, handleClose, contact }) {
               />
             </Grid>
             <Grid item xs={4}>
-              <Button fullWidth type="submit" variant="contained">
+              <Button
+                fullWidth
+                type="submit"
+                variant="contained"
+                onClose={handleClose}
+              >
                 submit
               </Button>
             </Grid>

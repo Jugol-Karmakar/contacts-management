@@ -17,6 +17,7 @@ export default function AddContacts() {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -41,6 +42,8 @@ export default function AddContacts() {
 
         console.log(data);
       });
+
+    reset();
   };
 
   return (
