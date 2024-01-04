@@ -2,16 +2,46 @@ import {
   Box,
   Button,
   Card,
-  CardActions,
   CardContent,
   CardMedia,
   Typography,
 } from "@mui/material";
-import Image from "next/image";
-import React from "react";
+import React, { useEffect } from "react";
+import ContactModal from "./contact-modal";
+import useContacts from "@/hooks/useContacts";
 
 export default function ContactCard({ contact }) {
-  //   console.log(contact);
+  // console.log(contact);
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  // using hooks
+  const [allContacts, setAllContacts] = useContacts();
+
+  const handleDeleteItem = (id) => {
+    console.log("deleting contact", id);
+    const proceed = window.confirm("are you sure want to delete?");
+    if (proceed) {
+      fetch(`http://localhost:5000/contacts/${id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            const result = allContacts.filter((cont) => cont._id !== id);
+            setAllContacts(result);
+          }
+        });
+    }
+  };
+
   return (
     <>
       <Card>
@@ -29,14 +59,24 @@ export default function ContactCard({ contact }) {
           <Typography>{contact.phone}</Typography>
           <Typography>{contact.address}</Typography>
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <Button fullWidth variant="contained">
+            <Button fullWidth variant="contained" onClick={handleClickOpen}>
               Update
             </Button>
-            <Button fullWidth variant="outlined">
+            <Button
+              fullWidth
+              variant="outlined"
+              onClick={() => handleDeleteItem(contact._id)}
+            >
               Delete
             </Button>
           </Box>
         </CardContent>
+        <ContactModal
+          open={open}
+          setOpen={setOpen}
+          handleClose={handleClose}
+          handleClickOpen={handleClickOpen}
+        />
       </Card>
     </>
   );
