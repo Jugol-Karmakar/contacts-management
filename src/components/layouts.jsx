@@ -29,33 +29,34 @@ export default function Layout({ children }) {
       >
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography variant="h6" noWrap component="div">
-            <Link href="/">Contact Management</Link>
+            <Link href="/" style={{ textDecoration: "none", color: "#2196f3" }}>
+              Contact Management
+            </Link>
           </Typography>
 
           {/* header links  */}
 
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Box sx={{ flexGrow: 0 }}>
-              <Button variant="outlined" sx={{ marginRight: "15px" }}>
-                <Link
-                  href="/add-contacts"
-                  style={{
-                    textDecoration: "none",
-                  }}
-                >
+              <Link
+                href="/add-contacts"
+                style={{
+                  textDecoration: "none",
+                }}
+              >
+                <Button variant="contained" sx={{ marginRight: "15px" }}>
                   Add Contacts
-                </Link>
-              </Button>
-              <Button>
-                <Link
-                  href="/all-contacts"
-                  style={{
-                    textDecoration: "none",
-                  }}
-                >
-                  All Contacts
-                </Link>
-              </Button>
+                </Button>
+              </Link>
+
+              <Link
+                href="/all-contacts"
+                style={{
+                  textDecoration: "none",
+                }}
+              >
+                <Button variant="contained">All Contacts</Button>
+              </Link>
             </Box>
           </Box>
         </Toolbar>
@@ -88,34 +89,85 @@ export default function Layout({ children }) {
         {/* sidebar links  */}
 
         <Box
-          sx={{ overflow: "auto", display: "flex", flexDirection: "column" }}
+          sx={{
+            overflow: "auto",
+            display: "flex",
+            flexDirection: "column",
+            paddingY: "1px",
+          }}
         >
-          <Button
-            fullWidth
-            sx={{ paddingY: "10px", backgroundColor: "primary.main" }}
+          <Link
+            href="/"
+            style={{
+              textDecoration: "none",
+              color: "primary.light",
+            }}
           >
-            <Link href="/" style={{ textDecoration: "none" }}>
+            <Button
+              fullWidth
+              sx={{
+                paddingY: "10px",
+                backgroundColor: "primary.main",
+                color: "primary.light",
+                borderRadius: 0,
+                marginBottom: "4px",
+              }}
+            >
               Home
-            </Link>
-          </Button>
-          <Button
-            fullWidth
-            sx={{ paddingY: "10px", backgroundColor: "primary.main" }}
+            </Button>
+          </Link>
+          <Link
+            href="/add-contacts"
+            style={{ textDecoration: "none", color: "primary.light" }}
           >
-            <Link href="/add-contacts" style={{ textDecoration: "none" }}>
+            <Button
+              fullWidth
+              sx={{
+                paddingY: "10px",
+                backgroundColor: "primary.main",
+                color: "primary.light",
+                borderRadius: 0,
+                marginBottom: "4px",
+              }}
+            >
               Add Contact
-            </Link>
-          </Button>
-          <Button>
-            <Link href="/all-contacts" style={{ textDecoration: "none" }}>
+            </Button>
+          </Link>
+          <Link
+            href="/all-contacts"
+            style={{ textDecoration: "none", color: "priamry.light" }}
+          >
+            <Button
+              fullWidth
+              sx={{
+                paddingY: "10px",
+                backgroundColor: "primary.main",
+                color: "primary.light",
+                borderRadius: 0,
+                marginBottom: "4px",
+              }}
+            >
               All Contact
-            </Link>
-          </Button>
-          <Button>
-            <Link href="/favourites" style={{ textDecoration: "none" }}>
+            </Button>
+          </Link>
+
+          <Link
+            href="/favourites"
+            style={{ textDecoration: "none", color: "primary.light" }}
+          >
+            <Button
+              fullWidth
+              sx={{
+                paddingY: "10px",
+                backgroundColor: "primary.main",
+                color: "primary.light",
+                borderRadius: 0,
+                marginBottom: "4px",
+              }}
+            >
               favourites
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </Box>
       </Drawer>
 

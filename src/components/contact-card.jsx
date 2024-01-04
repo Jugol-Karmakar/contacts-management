@@ -12,7 +12,7 @@ import useContacts from "@/hooks/useContacts";
 import StarIcon from "@mui/icons-material/Star";
 
 export default function ContactCard({ contact }) {
-  // console.log(contact);
+  console.log(contact.user ? contact.user.name : contact.name);
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -49,7 +49,7 @@ export default function ContactCard({ contact }) {
     console.log("add favourite id", id);
 
     fetch(`http://localhost:5000/contacts/${id}`, {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         "content-type": "application/json",
       },
@@ -101,12 +101,24 @@ export default function ContactCard({ contact }) {
           />
         </CardMedia>
         <CardContent>
-          <Typography>{contact.name}</Typography>
-          <Typography>{contact.email}</Typography>
-          <Typography>{contact.phone}</Typography>
-          <Typography>{contact.address}</Typography>
+          <Typography>
+            {contact.user ? contact.user.name : contact.name}
+          </Typography>
+          <Typography>
+            {contact.user ? contact.user.email : contact.email}
+          </Typography>
+          <Typography>
+            {contact.user ? contact.user.phone : contact.phone}
+          </Typography>
+          <Typography>
+            {contact.user ? contact.user.address : contact.address}
+          </Typography>
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-            <Button fullWidth variant="contained" onClick={handleClickOpen}>
+            <Button
+              fullWidth
+              variant="contained"
+              onClick={() => handleClickOpen()}
+            >
               Update
             </Button>
             <Button
@@ -125,6 +137,7 @@ export default function ContactCard({ contact }) {
           setOpen={setOpen}
           handleClose={handleClose}
           handleClickOpen={handleClickOpen}
+          contact={contact}
         />
       </Card>
     </>

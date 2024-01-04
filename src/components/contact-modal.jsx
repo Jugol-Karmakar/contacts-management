@@ -15,7 +15,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
-export default function ContactModal({ open, handleClose }) {
+export default function ContactModal({ open, handleClose, contact }) {
   const {
     register,
     handleSubmit,
@@ -24,7 +24,17 @@ export default function ContactModal({ open, handleClose }) {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    const updateData = data;
+    console.log("update date", contact._id);
+    fetch(`http://localhost:5000/contacts/${contact._id}`, {
+      method: "Put",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updateData),
+    })
+      .then((res) => res.json())
+      .then((data) => console.log(data));
   };
 
   return (
