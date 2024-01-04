@@ -94,6 +94,14 @@ export default function Layout({ children }) {
             fullWidth
             sx={{ paddingY: "10px", backgroundColor: "primary.main" }}
           >
+            <Link href="/" style={{ textDecoration: "none" }}>
+              Home
+            </Link>
+          </Button>
+          <Button
+            fullWidth
+            sx={{ paddingY: "10px", backgroundColor: "primary.main" }}
+          >
             <Link href="/add-contacts" style={{ textDecoration: "none" }}>
               Add Contact
             </Link>

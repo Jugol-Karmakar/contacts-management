@@ -6,7 +6,7 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import ContactModal from "./contact-modal";
 import useContacts from "@/hooks/useContacts";
 import StarIcon from "@mui/icons-material/Star";
