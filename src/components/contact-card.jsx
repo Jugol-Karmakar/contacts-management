@@ -6,10 +6,11 @@ import {
   CardMedia,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { use, useEffect } from "react";
 import ContactModal from "./contact-modal";
 import useContacts from "@/hooks/useContacts";
 import StarIcon from "@mui/icons-material/Star";
+import Image from "next/image";
 
 export default function ContactCard({ contact }) {
   console.log(contact.user ? contact.user.name : contact.name);

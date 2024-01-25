@@ -9,10 +9,21 @@ import {
   Typography,
 } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const drawerWidth = 240;
 
+const SIDEBAR_LINKS = [
+  { id: 1, name: "Home", href: "/" },
+  { id: 2, name: "Add Contact", href: "/add-contacts" },
+  { id: 3, name: "All Contacts", href: "/all-contacts" },
+  { id: 4, name: "Favourites", href: "/favourites" },
+  { id: 5, name: "Profile", href: "/profile" },
+];
+
 export default function Layout({ children }) {
+  const router = useRouter();
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -93,81 +104,41 @@ export default function Layout({ children }) {
             overflow: "auto",
             display: "flex",
             flexDirection: "column",
-            paddingY: "1px",
+            padding: "10px",
           }}
         >
-          <Link
-            href="/"
-            style={{
-              textDecoration: "none",
-              color: "primary.light",
-            }}
-          >
-            <Button
-              fullWidth
-              sx={{
-                paddingY: "10px",
-                backgroundColor: "primary.main",
-                color: "primary.light",
-                borderRadius: 0,
-                marginBottom: "4px",
-              }}
-            >
-              Home
-            </Button>
-          </Link>
-          <Link
-            href="/add-contacts"
-            style={{ textDecoration: "none", color: "primary.light" }}
-          >
-            <Button
-              fullWidth
-              sx={{
-                paddingY: "10px",
-                backgroundColor: "primary.main",
-                color: "primary.light",
-                borderRadius: 0,
-                marginBottom: "4px",
-              }}
-            >
-              Add Contact
-            </Button>
-          </Link>
-          <Link
-            href="/all-contacts"
-            style={{ textDecoration: "none", color: "priamry.light" }}
-          >
-            <Button
-              fullWidth
-              sx={{
-                paddingY: "10px",
-                backgroundColor: "primary.main",
-                color: "primary.light",
-                borderRadius: 0,
-                marginBottom: "4px",
-              }}
-            >
-              All Contact
-            </Button>
-          </Link>
-
-          <Link
-            href="/favourites"
-            style={{ textDecoration: "none", color: "primary.light" }}
-          >
-            <Button
-              fullWidth
-              sx={{
-                paddingY: "10px",
-                backgroundColor: "primary.main",
-                color: "primary.light",
-                borderRadius: 0,
-                marginBottom: "4px",
-              }}
-            >
-              favourites
-            </Button>
-          </Link>
+          {SIDEBAR_LINKS.map((link) => {
+            return (
+              <Link
+                key={link.id}
+                href={link.href}
+                style={{
+                  textDecoration: "none",
+                }}
+              >
+                <Button
+                  fullWidth
+                  sx={{
+                    paddingY: "10px",
+                    backgroundColor:
+                      router.pathname === link.href
+                        ? "primary.main"
+                        : " #3e495e",
+                    color: "primary.light",
+                    borderRadius: 0,
+                    marginBottom: "2px",
+                    transition: "background-color 0.5s",
+                    "&:hover": {
+                      backgroundColor: "primary.main",
+                    },
+                    borderRadius: "10px",
+                  }}
+                >
+                  {link.name}
+                </Button>
+              </Link>
+            );
+          })}
         </Box>
       </Drawer>
 

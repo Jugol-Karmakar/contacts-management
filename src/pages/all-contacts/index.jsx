@@ -35,16 +35,19 @@ export default function AllContacts() {
 
       <Container sx={{ paddingY: "25px" }}>
         <Grid container spacing={4}>
-          {allContacts.map((contact) => (
-            <Grid item xs={4} key={contact._id}>
-              {/* single product card*/}
-              <ContactCard
-                contact={contact}
-                allContacts={allContacts}
-                setAllContacts={setAllContacts}
-              />
-            </Grid>
-          ))}
+          {allContacts
+            .slice()
+            .reverse()
+            .map((contact) => (
+              <Grid item xs={4} key={contact._id}>
+                {/* single product card*/}
+                <ContactCard
+                  contact={contact}
+                  allContacts={allContacts}
+                  setAllContacts={setAllContacts}
+                />
+              </Grid>
+            ))}
         </Grid>
       </Container>
     </Layout>
